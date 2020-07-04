@@ -10,7 +10,7 @@ var {
 
 describe("order.js", function() {
   describe("takeOrder", function() {
-    it.skip("should be a function", function() {
+    it("should be a function", function() {
       assert.isFunction(takeOrder);
     });
 
@@ -117,7 +117,7 @@ describe("order.js", function() {
       assert.equal(deliveryOrders.length, 3);
       assert.deepEqual(deliveryOrders, [order1, order2, order3]);
     });
-  }); 
+  });
 
   describe("refundOrder", function() {
     it.skip("should be a function", function () {
@@ -152,9 +152,10 @@ describe("order.js", function() {
       var deliveryOrders = [order1, order2, order3];
 
       refundOrder(1, deliveryOrders);
-
+      //refundOrder(2, deliveryOrders);
       assert.equal(deliveryOrders.length, 2);
       assert.deepEqual(deliveryOrders, [order2, order3])
+      //assert.deepEqual(deliveryOrders, [order1, order3])
     });
   });
 
@@ -163,7 +164,7 @@ describe("order.js", function() {
       assert.isFunction(listItems);
     });
 
-    it.skip("should list out all of the order items", function() {
+    it("should list out all of the order items", function() {
       var order1 = {
         orderNumber: 1,
         item: "burger",

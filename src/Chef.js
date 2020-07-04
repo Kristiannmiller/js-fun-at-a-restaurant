@@ -1,6 +1,6 @@
 class Chef {
-  constructor() {
-    
+  constructor(name, restaurant) {
+
   }
 }
 
