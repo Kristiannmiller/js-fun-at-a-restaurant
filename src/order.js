@@ -11,7 +11,6 @@ function takeOrder(order, array) {
 };
 
 // refundOrder function removes an order by orderNumber
-
 // create a FUNCTION called refundOrder that pulls in orderNumber string and deliveryOrders array as params
 function refundOrder(orderNumber, deliveryOrders) {
   // LOOP through deliveryOrders array beginning at [0] to length of array
@@ -26,14 +25,13 @@ function refundOrder(orderNumber, deliveryOrders) {
 };
 
 // listItems function puts all the order items into a STRING separated by commas
-
 // create FUNCTION called listItems that pulls in deliveryOrders as a param
 function listItems(deliveryOrders) {
   // create an empty ARRAY to send items to
   var listItemsArray = [];
   // LOOP through the deliveryOrders array beginning at [0] through the length of the array
   for(var i = 0; i < deliveryOrders.length; i++) {
-    // PUSH the index value into the empty array within the function
+    // PUSH the current index item value into the listItemsArray
     listItemsArray.push(deliveryOrders[i].item);
   };
   // create a STRING variable INTERPOLATING each index of the new array in the correct format
