@@ -24,27 +24,25 @@ function createRestaurant(name) {
 function checkMenu(restaurant, item) {
   // create an empty ARRAY to push to
   var menuSearch = []
-  // IF there is a value within the breakfast menu of the object
-  if(restaurant.menus.breakfast[0]) {
+  // LOOP through the breakfast menu starting at [0] through the length of the array
+  for(var i = 0; i < restaurant.menus.breakfast.length; i++) {
+    // IF there is a value within the breakfast menu of the object
     // assign the variable bkfst to the name property of that value
-    var bkfst = restaurant.menus.breakfast[0].name
     // ELSE assign the variable bkfst to an empty array
-  } else {
-    var bkfst = []
+    var bkfst = restaurant.menus.breakfast[i] ? restaurant.menus.breakfast[i].name : [];
+    // PUSH the values to the menuSearch array
+    menuSearch.push(bkfst);
   };
-  // repeat IF/ELSE statments for lunch and dinner menus
-  if(restaurant.menus.lunch[0]) {
-    var lunch = restaurant.menus.lunch[0].name
-  } else {
-    var lunch = []
+  // repeat for lunch menu
+  for(var i = 0; i < restaurant.menus.lunch.length; i++) {
+    var lunch = restaurant.menus.lunch[0] ? restaurant.menus.lunch[0].name : [];
+    menuSearch.push(lunch);
   };
-  if(restaurant.menus.dinner[0]) {
-    var lunch = restaurant.menus.dinner[0].name
-  } else {
-    var dinner = []
-  };
-  // PUSH the bkfst, lunch, and dinner arrays to the menuSearch array
-  menuSearch.push(bkfst, lunch, dinner);
+  // repeat for dinner menu
+  for(var i = 0; i < restaurant.menus.dinner.length; i++) {
+    var dinner = restaurant.menus.dinner[0] ? restaurant.menus.dinner[0].name : [];
+    menuSearch.push(dinner);
+  }
   // RETURN search results
   return menuSearch.includes(item);
 };
@@ -76,14 +74,38 @@ function addMenuItem(restaurant, item) {
 function removeMenuItem(restaurant, mealName, type) {
   // IF the result of checkMenu is true
   if(checkMenu(restaurant, mealName)) {
-    // SPLICE the item from the type property in the restaurant menu object
-    restaurant.menus[type].splice(0, 1)
-    // RETURN the string using INCANTATION
-    return `No one is eating our ${mealName} - it has been removed from the ${type} menu!`
-    // ELSE return the other string using INCANTATION
+    // IF the item is in the breakfast menu
+    if(type === "breakfast") {
+      // LOOP through the breakfast menu to find the index of the item
+      for(var i = 0; i < restaurant.menus.breakfast.length; i++) {
+        if(restaurant.menus.breakfast[i].name === mealName) {
+          // SPLICE one item at the current index out of the breakfast menu
+          restaurant.menus.breakfast.splice([i], 1);
+          // RETURN interpolated string
+          return `No one is eating our ${mealName} - it has been removed from the breakfast menu!`;
+        };
+      };
+    // repeat for lunch menu
+    } else if(type === "lunch") {
+      for(var i = 0; i < restaurant.menus.lunch.length; i++) {
+        if(restaurant.menus.lunch[i].name === mealName) {
+          restaurant.menus.lunch.splice([i], 1);
+          return `No one is eating our ${mealName} - it has been removed from the lunch menu!`;
+        };
+      };
+    // repeat for dinner menu
+    } else if(type === "dinner") {
+      for(var i = 0; i < restaurant.menus.dinner.length; i++) {
+        if(restaurant.menus.dinner[i].name === mealName) {
+          restaurant.menus.dinner.splice([i], 1);
+          return `No one is eating our ${mealName} - it has been removed from the dinner menu!`;
+        };
+      };
+    };
+  // ELSE return "sorry" interpolated string
   } else {
     return `Sorry, we don't sell ${mealName}, try adding a new recipe!`
-  }
+  };
 };
 
 module.exports = {
