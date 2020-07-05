@@ -19,7 +19,7 @@ function refundOrder(orderNumber, deliveryOrders) {
     // IF orderNumber is the same as the string of the index being checked
     if(orderNumber === deliveryOrders[i].orderNumber) {
       // SPLICE one element, starting at the index being checked
-      deliveryOrders.splice(deliveryOrders[i].orderNumber - 1, 1);
+      deliveryOrders.splice(deliveryOrders[i], 1);
     };
       // ELSE do nothing
   };
@@ -43,7 +43,7 @@ function listItems(deliveryOrders) {
 };
 
 // searchOrder function searches the order list for an item and returns a BOOLEAN
-
+  // COULD THIS BE MADE INTO A TERNARY??
 // create a FUNCTION called searchOrders that pulls in the array deliveryOrders, and item we're searching for
 function searchOrder(deliveryOrders, item) {
   // LOOP through the deliveryOrders array beginning at [0] until the end of the array
