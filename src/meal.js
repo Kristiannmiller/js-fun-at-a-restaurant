@@ -15,12 +15,13 @@ function createMenuItem(menuItemName, price, type) {
 // create a new FUNCTION called addIngredients that pulls in ingredient and the name of the array as params
 function addIngredients(ingredient, array) {
   // IF the ingredient param already exists in the array, don't add it
-  if(array.includes(ingredient)) {
-     return
   // ELSE PUSH the ingredient into the array param
-   } else {
-     array.push(ingredient);
-   }
+  /* if(array.includes(ingredient)) {
+      return
+    } else {
+      array.push(ingredient);
+    } */
+  array.includes(ingredient) ? null : array.push(ingredient)
 };
 // create a FUNCTION called formatPrice that pulls in an initialPrice param
 function formatPrice(initialPrice) {
